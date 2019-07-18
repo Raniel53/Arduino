@@ -1,0 +1,44 @@
+// Made by Raniel do Rosário Dal Piero.
+// Normal Leds.
+int vermelho = 2;
+int azul = 3;
+int verde = 4;
+int amarelo = 5;
+int branco = 6;
+// Led RGB
+int red = 8;
+int blue = 9;
+int green = 10;
+// Delay
+int temp = 10;
+// Do a gradient efect between two color's.
+void gradient(int& from, int& to, int ledf, int ledt, int temp){
+  int color = 255;
+  int color2 = 0;
+  for (color; color>0;){
+    analogWrite(from, color--);
+    analogWrite(to, color2++);
+    analogWrite(ledf, color--);
+    analogWrite(ledt, color2++);
+    delay(temp);
+  }
+}
+// Flash between two color's.
+void flash(int led1, int led2){
+  analogWrite(led1, 255);
+  analogWrite(led2, 0);
+}
+// nothing.
+void setup() {
+}
+// run the function's in loop.
+void loop() {
+  flash (branco, amarelo);
+  gradient(red, blue, vermelho, azul, temp);
+  flash (amarelo, branco);
+  gradient(blue, green, azul, verde, temp);
+  flash (branco, amarelo);
+  gradient(green, red, verde, vermelho, temp);
+  flash (amarelo, branco);
+}
+// Finish.
